@@ -1,22 +1,32 @@
-
+import java.util.Random;
 
 public class Tablero {
-    public Celda[] tabla;
-    int nivel;
+    private int[] tablero;
+    private Random random;
 
-    public Tablero(int nivel){
-        this.nivel = nivel;
-        tabla = new Celda[100];
-    }
-    
-    public void timer(){
-        /*por desarrollar
-        for (int t = 20; t)
-        if(timer != 0){
+    public Tablero(){
+        tablero = new int[100];
+        random = new Random();
+        generarTablero();
+    }   
 
+    private void generarTablero(){
+        int tipoCelda = 1;
+        int celda;
+        while(tipoCelda < 5){
+            for(int i = 0; i < 4; i++){
+                celda = random.nextInt(99);
+                if(tablero[celda] == 0){
+                    tablero[celda] = tipoCelda;
+                }else{
+                    i--;
+                }
+            }
+            tipoCelda++;
         }
-
-        */
     }
 
+    public int getCelda(int i){
+        return tablero[i];
+    }
 }

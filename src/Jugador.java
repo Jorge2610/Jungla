@@ -1,22 +1,35 @@
-public class Jugador {
-    public Jugador nextP;
-    public int position;
-    public int comodin;
+public class Jugador{
+
+    private int posicion;
+    private int comodin;
+    private boolean ganador;
     
     public Jugador(){
-        this.nextP = nextP;
-        position = 0;
-        comodin = 2;
+        posicion = 0;
+        comodin = 0;
+        ganador = false;
     }
     
-    public int getPosition(){
-        return position;
+    public int getPosicion(){
+        return posicion;
     }
-    public void mover(int x){
-        position += x;
-    }
-    public void insertPlayer(){
 
+    public void mover(int x){
+        posicion = posicion + x;
+        if(posicion >= 99){
+            ganador = true;
+        }
+    }
+
+    public boolean getGanador(){
+        return ganador;
+    }
+
+    public int getComodin(){
+        return comodin;
     }
     
+    public void darComodin(){
+        comodin++;
+    }
 }

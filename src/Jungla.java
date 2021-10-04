@@ -1,46 +1,44 @@
-import java.util.Random;
-//import javax.swing.plaf.OptionPaneUI;
+import java.util.Scanner;
 
 public class Jungla {
-    static Random dado = new Random();
-    static Tablero tablero;
-    static int turnoAct = 0;
-    static Jugador jugador;
-    static int njugadores = 1;
+    static Scanner scanner = new Scanner(System.in);
+    static int dificultad = 2;
+    public static void main(String[] args){
+        mostrarMenu();
+    }
     
-    public static void main(String[] args) throws Exception {
-        //jugador = new Jugador(1);
-        //jugadorIa = new Jugador(2);
-        tablero= new Tablero(1);
-        //mientras no haya un ganador, se puede jugar
-        /*
-        while(!tablero.ganador()){
-            // play();
+    public static void mostrarMenu(){
+        int opcionElegida;
+        System.out.println("---------- JUNGLA ---------- \n");
+        System.out.println("1.- Iniciar nueva partida.");
+        System.out.println("2.- Cambiar dificultad.");
+        System.out.println("3.- Salir. \n");
+        System.out.println("---------------------------- \n");
+        System.out.print("Ingrese una opción: ");
+        opcionElegida = scanner.nextInt(); //Falta manejo de excepciones.
+        if(opcionElegida == 1){
+            iniciarPartida();
+            mostrarMenu();
+        }else if(opcionElegida == 2){
+            menuDificultad();
+        }else{
+            System.exit(0);
         }
-        */
-        //dropGanador
-        
-
-        
-    }
-    public static int turno(){
-        if(turnoAct == njugadores){
-            turnoAct = 0;
-        } else {
-            turnoAct++;
-        }
-        return turnoAct;
-        
-    }
-    public void play(){
-        int x = lanzarDado();
-        int y = turno();
-        jugador.mover(x);
     }
 
-    public static int lanzarDado(){
-        
-        return dado.nextInt(6) + 1;
+    public static void menuDificultad(){
+        System.out.println("---------- DIFICULTAD ---------- \n");
+        System.out.println("1.- Facil.");
+        System.out.println("2.- Normal.");
+        System.out.println("3.- Dificil. \n");
+        System.out.println("-------------------------------- \n");
+        System.out.print("Ingrese una opción: ");
+        dificultad = scanner.nextInt(); //Falta manejo de excepciones.
+        mostrarMenu();
     }
 
+    public static void iniciarPartida(){
+        Partida partida = new Partida(dificultad);
+        partida.jugar();
+    }    
 }
